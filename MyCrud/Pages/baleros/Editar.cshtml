@@ -1,0 +1,56 @@
+﻿@page
+@model MyCrud.Pages.baleros.EditarModel
+@{
+}
+
+<br />
+<h2>Editar Elemento</h2>
+
+@if (Model.ErrorMensaje.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.ErrorMensaje</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<form method="POST">
+    <div class="row mb-3">
+        <!--una copia de esto por cada elemnto a registrar-->
+        <input type="hidden" name="Id" value="@Model.balerosInfo.Id" />
+        <label class="col-sm-3 col-form-label">Marca</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="Marca" value="@Model.balerosInfo.Marca" />
+        </div>
+    </div><!--hasta aqui-->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Codigo</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="Nombre" value="@Model.balerosInfo.Nombre" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-6">
+            <input type="number" step="0.01" class="form-control" name="Precio" value="@Model.balerosInfo.Precio" />
+        </div>
+    </div>
+
+    @if (Model.GuardadoMensaje.Length > 0)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@Model.GuardadoMensaje</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-danger" href="../" role="button"> Cancelar</a>
+        </div>
+    </div>
+</form>

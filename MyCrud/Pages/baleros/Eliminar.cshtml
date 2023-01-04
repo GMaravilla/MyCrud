@@ -1,0 +1,27 @@
+﻿@page
+@using System.Data.SqlClient;
+@{
+
+    try
+    {
+        String Id = Request.Query["Id"];
+        String ErrorMensaje = "";
+
+        string conexion = "Data Source=.;Initial Catalog=crudmvc;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(conexion))
+        {
+            connection.Open();
+            string sql = "DELETE FROM Baleros WHERE Id = @Id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@Id", Id);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+    Response.Redirect("/baleros/Index");
+}
